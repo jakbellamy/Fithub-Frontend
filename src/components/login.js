@@ -1,37 +1,52 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 import '../App.css'
-
-let updateElementInArray = (array, id, values) => {
-	return array.map( (element) => {
-		if(element.id == id){
-			return { ...element, ...values }
-		} else {
-			return element
-		}
-	})
-}
 
 export default class Login extends Component {
 
-    setUsername = (value) => {
-        this.setState({username: value})
+    state = {
+        username: '',
+        password: '',
+        flash: false
     }
-    setPassword = (value) => {
-        this.setState({password: value})
+    setInput = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    queryAuth = (e) => {
+        e.preventDefault()
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            })  
+        })
+        .then(res => res.json())
+        .then(res => this.props.onLogin(res))
+        .then(() => this.renderRedirect())
     }
 
     render() {
         return (
             <div className="Login">
                 <h1 className="Login-title">Login</h1>
+                {this.state.flash ? <p className="Flash-warning">Wrong Username or Password</p> : null}
                 <p className="Login-content">Username</p>
                 <input className="Login-input" 
-                    onChange={(e) => {this.setUsername(e.target.value)}}
+                    name = "username"
+                    onChange={(e) => {this.setInput(e)}}
                 />
                 <p className="Login-content">Password</p>
                 <input className="Login-input" 
-                    onChange={(e) => {this.setPassword(e.target.value)}}
+                    name = "password"
+                    onChange={(e) => {this.setInput(e)}}
                 />
+                <button className='Login-button' onClick={(e) => {this.queryAuth(e)}}>Login</button>
             </div>
         )
     }

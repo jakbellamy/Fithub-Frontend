@@ -5,9 +5,16 @@ export default class UserNav extends Component {
     render() {
         return (
         <div className="Navbar">
-            <span className="Nav-item">Workout Library</span>
-            <span className="Nav-item">Set Library</span>
-            <span className="Nav-item">About</span>
+            <span className="Nav-item"
+                onClick={() => this.props.select('workoutLibrary')}
+            >Workout Library</span>
+            <span className="Nav-item"
+                onClick={() => this.props.select('setLibrary')}
+            >Set Library</span>
+            <span className="Nav-item"
+                onClick={() => this.props.select('about')}
+            >About</span>
+            <span className="Nav-item">Logout</span>
         </div>
         )
     }
