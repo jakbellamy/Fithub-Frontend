@@ -12,8 +12,7 @@ const initialState = {
         path: '/login'
     },
     user: {
-        currentUser: null,
-        errors: null
+        currentUser: null
     }
 }
 

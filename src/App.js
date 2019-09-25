@@ -15,15 +15,14 @@ import PrivateRoute from './components/privateRoute';
 
 
 class App extends Component {
+  
   render() {
     return (
       <div className="App">
-        <Header />
-        {this.props.user === null ? <LoginNav/> : <UserNav/>}
         <Router history={history}>
+          <Header />
+          {this.props.currentUser === null ? <LoginNav/> : <UserNav/>}
           <Switch>
-
-
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
 
@@ -37,7 +36,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.currentUser
+    currentUser: state.user.currentUser
   }
 }
 

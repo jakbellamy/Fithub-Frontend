@@ -1,26 +1,23 @@
 import '../../App.css';
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class UserHome extends Component {
+
+class UserHome extends Component {
     
-    state = {
-        user: {}
-    }
-
-    componenetDidMount(){
-        fetch('http://localhost:5000/users', {
-            headers: {
-                'X-Auth-Token': this.props.token
-            }
-        })
-        .then(res => res.json())
-        .then(user => this.setState({user}))
-    }
     render() {
         return (
             <div className="User-div">
-                <h1 className ="User-home">Welcome {this.state.user.name}</h1>
+                <h1 className ="User-home">Welcome {this.props.currentUser}</h1>
             </div>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      currentUser: state.user.currentUser,
+    }
+  }
+
+export default connect(mapStateToProps)(UserHome)

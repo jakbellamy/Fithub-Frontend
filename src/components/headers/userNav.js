@@ -19,7 +19,6 @@ class UserNav extends Component {
             Workouts
             </span>
             <span className="Nav-item" onClick={() => {
-                console.log('hit')
                 this.props.dispatch({type: 'LOG_OUT'})
             }}>
             Logout
