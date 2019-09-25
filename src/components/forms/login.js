@@ -3,10 +3,8 @@ import * as React from 'react'
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router'
-import {API_AT, loginErrorMsg} from '../../constants.js';
-import {server, loginRequest} from '../../server.js';
-import {history} from '../../history.js'
-import userHome from '../userViews/userHome';
+import {API_AT} from '../../constants.js';
+
 
 class Login extends Component {
 
@@ -19,27 +17,30 @@ class Login extends Component {
         }
     }
 
+    serveData = (body) => { 
+        fetch(`${API_AT('login')}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+          })
+          .then(res => res.json())
+          .then(res => this.successCheck(res))
+          .catch(err => {return err})
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
-        let data = {
+        let body = {
           username: e.target.username.value,
           password: e.target.password.value
         }
-  
-        fetch(`${API_AT('login')}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(res => this.successCheck(res))
-        .catch(err => {return err})
+        this.serveData(body)
       }
 
     render() {
-        console.log(this.props.errors)
+        console.log(this.props.currentUser)
         let redirectOnLogin = this.props.currentUser ? (
             <Redirect to={{pathname: "/home"}} />) : null
         return (
