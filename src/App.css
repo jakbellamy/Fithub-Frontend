@@ -1,13 +1,14 @@
 .App {
   text-align: center;
-  background-color: #3B4244;
+  background-color: #404C5A;
   height: 100vh;
   width: auto;
 }
 
 .App-header {
-  background-color: #002533;
+  background-color: #33373C;
   display: flex;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
   font-family: 'Merriweather Sans', sans-serif;
@@ -15,7 +16,7 @@
 
 
 .Navbar {
-  background-color: #4C6066;
+  background-color: #677990;
   justify-items: center;
   font-size: calc(8px + 2vmin);
   padding: 10px;
@@ -30,11 +31,11 @@
 }
 
 .Nav-item:hover {
-  color: #020204;
+  color: #33373C;
 }
 
 .Login {
-  background-color: #002533;
+  background-color: #33373C;
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 4%;
@@ -69,7 +70,19 @@
 }
 
 .Login-button {
+  background-color: #677990;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
 
+.Login-button:hover {
+  color:#677990;
+  background-color: #B1B1B3;
 }
 
 .Register-content {

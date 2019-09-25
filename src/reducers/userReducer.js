@@ -2,7 +2,7 @@ import {history} from '../history'
 export const userReducer = (state = {}, action) => {
     switch (action.type) {
         case 'LOG_IN':
-            return{...state, currentUser: action.payload}
+            return{...state, currentUser: action.payload, errors: null}
         case 'LOG_OUT':
             state = {...state, currentUser: null}
         case 'FETCH_USER_DATA':
@@ -13,4 +13,3 @@ export const userReducer = (state = {}, action) => {
             return state;
     }
 }
-  

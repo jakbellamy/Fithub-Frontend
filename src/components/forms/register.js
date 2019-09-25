@@ -62,7 +62,7 @@ class Register extends Component {
                 <p className="Register-content">Password</p>
                 <input className="Register-input" type="password" name = "password"/>
 
-                <button className='Login-button' type="submit" name="signup">Login</button>
+                <button className='Login-button' type="submit" name="signup">Sign Up</button>
                 </form>
             </div>
             </>

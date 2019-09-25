@@ -5,7 +5,7 @@ export default class Header extends Component {
     render() {
         return (
           <header className="App-header">
-            <h1>FitHub</h1>
+            <h1>F I T H U B</h1>
           </header>
         )
     }
