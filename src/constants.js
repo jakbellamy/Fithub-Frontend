@@ -1,5 +1,5 @@
 export function API_AT(endpoint){
-    return `http://localhost/5000/${endpoint}`
+    return `http://localhost:5000/${endpoint}`
 }
 
 export function PRODUCTION_AT(endpoint){

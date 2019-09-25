@@ -1,33 +1,36 @@
 import '../../App.css';
-import {React, Component} from 'react';
+import * as React from 'react'
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import {API_AT, loginErrorMsg} from '../../constants.js';
-import {server} from '../../server.js';
+import {server, loginRequest} from '../../server.js';
 
 class Login extends Component {
-    queryServer = (body) => {
-        let res = server.POST(API_AT('login'), body)
-        if(res.token && res.user){
-            localStorage.token = res.token;
-            this.props.dispatch({type: 'LOG_IN', payload: res.username});
-            this.props.dispatch({type: 'HOME'});
-        }
-    }
-
     handleSubmit = (e) => {
         e.preventDefault()
         let body = {
-            userName: e.target.username.value,
+            username: e.target.username.value,
             password: e.target.password.value
         }
-        this.queryServer(body)
+        fetch(API_AT('login'), {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+        .then(res => res.json)
+        .then(res => localStorage.setItem('token', res.token))
+        .then(res => this.props.dispatch({type: 'LOG_IN', payload: body.username}))
+        .then(res => this.props.dispatch({type: 'HOME'}))
+        .then(console.log)
     }
 
     render() {
         return (
             <div className="Login">
                 <h1 className="Login-title">Login</h1>
-                <form>
+                <form onSubmit={e => this.handleSubmit(e)}>
                     <p className="Login-content">Username</p>
                     <input className="Login-input" type="text" name = "username"/>            
                     <p className="Login-content">Password</p>

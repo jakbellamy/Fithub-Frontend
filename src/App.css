@@ -1,9 +1,12 @@
 .App {
-  text-align: center
+  text-align: center;
+  background-color: #3B4244;
+  height: 100vh;
+  width: auto;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #002533;
   display: flex;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -12,7 +15,7 @@
 
 
 .Navbar {
-  background-color: #1DA1F2;
+  background-color: #4C6066;
   justify-items: center;
   font-size: calc(8px + 2vmin);
   padding: 10px;
@@ -27,11 +30,11 @@
 }
 
 .Nav-item:hover {
-  color: #14171A;
+  color: #020204;
 }
 
 .Login {
-  background-color: #282c34;
+  background-color: #002533;
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 4%;
@@ -65,6 +68,10 @@
   padding: 1%;
 }
 
+.Login-button {
+
+}
+
 .Register-content {
   color: #FFFFFF;
   position: relative;
@@ -86,11 +93,11 @@
 }
 
 .User-div {
-  background-color:  white;
+  background-color:  #424348;
 }
 
 .User-home {
-  color:  #282c34;
+  color:  #424348;
 }
 
 .Error-message {

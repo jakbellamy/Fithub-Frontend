@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         loggedIn: state.user.currentUser,
         location: ownProps.path,
-        routProps: {
+        routeProps: {
             exact: ownProps.exact,
             path: ownProps.path
         }

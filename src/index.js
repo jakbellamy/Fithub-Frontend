@@ -9,7 +9,7 @@ import rootReducer from './reducers/rootReducer'
 
 const initialState = {
     navigation: {
-        navigation: 'LOGIN'
+        path: '/login'
     },
     user: {
         currentUser: null,
@@ -19,8 +19,7 @@ const initialState = {
 
 const store = createStore(
     rootReducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    initialState
 )
 
 ReactDOM.render(
