@@ -1,8 +1,8 @@
+import '../../App.css';
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import '../App.css'
 
-export default class LoginNav extends Component {
+class LoginNav extends Component {
     render() {
         return (
         <div className="Navbar">

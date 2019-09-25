@@ -1,23 +1,17 @@
-import '../App.css';
+import '../../App.css';
 import {React, Component} from 'react';
 import {connect} from 'react-redux';
-import {API_AT, loginErrorMsg} from '.../constants.js';
-import server from '.../server.js';
+import {API_AT, loginErrorMsg} from '../../constants.js';
+import {server} from '../../server.js';
 
-export default class Login extends Component {
-    
+class Login extends Component {
     queryServer = (body) => {
-        server.POST(API_AT(login), body)
-        .then(res => {
-            if(res.token && res.user){
-                localStorage.token = res.token,
-                this.props.dispatch({type: 'LOG_IN', payload: res.username}),
-                this.props.dispatch({type: 'HOME'})
-            } else {
-                this.props.dispatch({type: 'FAILED_LOGIN', payload: true})
-            }
-        })
-        .catch(error => {return error})
+        let res = server.POST(API_AT('login'), body)
+        if(res.token && res.user){
+            localStorage.token = res.token;
+            this.props.dispatch({type: 'LOG_IN', payload: res.username});
+            this.props.dispatch({type: 'HOME'});
+        }
     }
 
     handleSubmit = (e) => {
@@ -33,7 +27,6 @@ export default class Login extends Component {
         return (
             <div className="Login">
                 <h1 className="Login-title">Login</h1>
-                {this.props.errors ? <p className="Error-message">{loginErrorMsg}</p> : null}
                 <form>
                     <p className="Login-content">Username</p>
                     <input className="Login-input" type="text" name = "username"/>            
@@ -46,10 +39,4 @@ export default class Login extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        errors: state.user.errors
-    }
-}
-
-export default connect(mapStateToProps)(Login)
+export default connect()(Login)

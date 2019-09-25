@@ -1,8 +1,8 @@
+import '../../App.css';
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import '../App.css'
 
-export default class UserNav extends Component {
+class UserNav extends Component {
     render() {
         return (
         <div className="Navbar">
@@ -18,7 +18,10 @@ export default class UserNav extends Component {
             <span className="Nav-item" onClick={() => this.props.dispatch({type: 'NAV_WORKOUTS'})}>
             Workouts
             </span>
-            <span className="Nav-item" onClick={() => this.props.dispatch({type: 'LOGOUT'})}>
+            <span className="Nav-item" onClick={() => {
+                console.log('hit')
+                this.props.dispatch({type: 'LOG_OUT'})
+            }}>
             Logout
             </span>
         </div>

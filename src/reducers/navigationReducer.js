@@ -1,6 +1,6 @@
 import {history} from '../history'
 
-navigationReducer = (state = null, action) => {
+export const navigationReducer = (state = null, action) => {
     switch(action.type){
         case 'NAV_LOGIN':
             history.push('/login')
@@ -26,7 +26,7 @@ navigationReducer = (state = null, action) => {
         case 'NAV_TO_WOKROUT':
             history.push(`workout/${action.payload}`)
             return {...state, path: `/workout/${action.payload}`}
+        default:
+            return state
     }
 }
-
-default export navigationReducer

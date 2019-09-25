@@ -1,17 +1,17 @@
-import '../App.css';
+import '../../App.css';
 import {React, Component} from 'react';
 import {connect} from 'react-redux';
-import API_AT from '.../constants.js';
-import server from '.../server.js';
+import {API_AT} from '../../constants.js';
+import {server} from '../../server.js';
 
-export default class Login extends Component {
+class Register extends Component {
     
     queryServer = (body) => {
-        server.POST(API_AT(register), body)
+        server.POST(API_AT('register'), body)
         .then(res => {
             if(res.userName){
-                localStorage.token = res.token,
-                this.props.dispatch({type: 'LOG_IN', payload: res.username}),
+                localStorage.token = res.token
+                this.props.dispatch({type: 'LOG_IN', payload: res.username})
                 this.props.dispatch({type: 'HOME'})
             }   
         })
@@ -46,4 +46,4 @@ export default class Login extends Component {
     }
 }
 
-export default connect()(Login)
+export default connect()(Register)
