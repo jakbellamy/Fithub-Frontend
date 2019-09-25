@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
 import './App.css';
+
+import React, { Component } from 'react'
+import {BrowserRouter} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router';
+
 import LoginNav from './components/loginNav';
 import Header from './components/header';
 import UserNav from './components/userNav';
@@ -9,31 +13,14 @@ import UserHome from './components/userHome';
 import WorkoutLibrary from './components/workoutLibrary';
 import SetLibrary from './components/setLibrary';
 import About from './components/about';
-import {BrowserRouter} from 'react-router-dom';
-import { Switch, Route, Redirect } from 'react-router';
 
 
 export default class App extends Component {
-  state = {
-    token: localStorage.getItem('token'),
-    user: JSON.parse(localStorage.getItem('user')) || {}
-  }
-
-  setUserInState = (res) => {
-    localStorage.setItem('token', res.token)
-    localStorage.setItem('user', JSON.stringify(res.user))
-    this.setState({token: res.token, user: res.user})
-  }
-
-  navClick = (selected) => {
-    this.setState({view: selected})
-  }
-
   render() {
     return (
       <div className="App">
         <Header />
-        {!this.state.loggedIn ? <LoginNav select={this.navClick}/> : <UserNav select={this.navClick}/>}
+        {this.props.user === null ? <LoginNav/> : <UserNav/>}
         <BrowserRouter>
           <Switch>
             <Route path="/login" render={props => <Login {...props} onLogin={this.setUserInState} />} />
