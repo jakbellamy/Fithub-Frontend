@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import '../App.css'
 
 export default class LoginNav extends Component {
@@ -15,3 +16,11 @@ export default class LoginNav extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      user: state.user.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(LoginNav)

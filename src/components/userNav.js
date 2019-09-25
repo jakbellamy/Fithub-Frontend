@@ -18,6 +18,9 @@ export default class UserNav extends Component {
             <span className="Nav-item" onClick={() => this.props.dispatch({type: 'NAV_WORKOUTS'})}>
             Workouts
             </span>
+            <span className="Nav-item" onClick={() => this.props.dispatch({type: 'LOGOUT'})}>
+            Logout
+            </span>
         </div>
         )
     }

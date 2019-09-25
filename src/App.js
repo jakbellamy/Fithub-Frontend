@@ -28,7 +28,6 @@ export default class App extends Component {
             <Route path="/home" render={props => <UserHome {...props} token={this.state.token} />} />
             <Route path="/workout_lib" render={props => <WorkoutLibrary {...props} token={this.state.token} />} />
             <Route path="/set_lib" render={props => <SetLibrary {...props} token={this.state.token} />} />
-            <Route path="/about" render={props => <About {...props} token={this.state.token} />} />
             <Route path="/" render={ () => <Redirect to="/login" />}/>
           </Switch>
         </BrowserRouter>
