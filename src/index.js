@@ -12,13 +12,14 @@ const initialState = {
         path: '/'
     },
     user: {
-        currentUser: null
+        currentUser: null,
+        errors: null
     }
 }
 
 const store = createStore(
     rootReducer,
-    initial,
+    initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

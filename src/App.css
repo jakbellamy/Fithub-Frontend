@@ -92,3 +92,12 @@
 .User-home {
   color:  #282c34;
 }
+
+.Error-message {
+  color: #ff0000;
+  position: relative;
+  top: -18px;
+  font-size: calc(4px + 2vmin);
+  font-family: 'Noto Sans TC', sans-serif;
+  display: flex;
+}
