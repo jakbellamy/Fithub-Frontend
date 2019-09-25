@@ -9,6 +9,16 @@ import {history} from '../../history.js'
 import userHome from '../userViews/userHome';
 
 class Login extends Component {
+
+    successCheck = (res) => {
+        if(res.success){
+            localStorage.token = res.token
+            this.props.dispatch({type: 'LOG_IN', payload: res.user})
+        } else {
+            this.props.dispatch({type: 'USER_ERROR', payload: res.msg})
+        }
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         let data = {
@@ -16,7 +26,7 @@ class Login extends Component {
           password: e.target.password.value
         }
   
-        fetch(`http://localhost:5000/login`, {
+        fetch(`${API_AT('login')}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -24,18 +34,12 @@ class Login extends Component {
           body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(res => {
-          localStorage.token = res.token
-          this.props.dispatch({type: 'LOG_IN', payload: res.user})
-        //   this.props.dispatch({type: 'NAV_LOGIN'})
-        })
-        .catch(err => {
-          console.log(err)
-        })
+        .then(res => this.successCheck(res))
+        .catch(err => {return err})
       }
 
     render() {
-        console.log(this.props.currentUser)
+        console.log(this.props.errors)
         let redirectOnLogin = this.props.currentUser ? (
             <Redirect to={{pathname: "/home"}} />) : null
         return (
@@ -43,6 +47,7 @@ class Login extends Component {
             { redirectOnLogin }
             <div className="Login">
                 <h1 className="Login-title">Login</h1>
+                {this.props.errors ? <p className="Error-message">{this.props.errors}</p> : ' '}
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <p className="Login-content">Username</p>
                     <input className="Login-input" type="text" name = "username"/>            
@@ -58,7 +63,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-      currentUser: state.user.currentUser
+      currentUser: state.user.currentUser,
+      errors: state.user.errors || null
     }
 }
 

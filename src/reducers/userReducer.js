@@ -7,6 +7,8 @@ export const userReducer = (state = {}, action) => {
             state = {...state, currentUser: null}
         case 'FETCH_USER_DATA':
             return {...state, userData: action.payload}
+        case 'USER_ERROR':
+            return {...state, errors: action.payload}
         default:
             return state;
     }

@@ -21,7 +21,8 @@ class App extends Component {
       <div className="App">
         <Router history={history}>
           <Header />
-          {this.props.currentUser === null ? <LoginNav/> : <UserNav/>}
+          {this.props.currentUser === null || this.props.currentUser === undefined ?(
+            <LoginNav/>) : <UserNav/>}
           <Switch>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
@@ -36,7 +37,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    errors: state.user.errors
   }
 }
 
