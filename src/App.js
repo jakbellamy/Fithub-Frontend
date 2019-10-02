@@ -12,6 +12,7 @@ import Login from './components/forms/login';
 import Register from './components/forms/register';
 import UserHome from './components/userViews/userHome';
 import PrivateRoute from './components/privateRoute';
+import NewSetForm from './components/forms/newSet';
 
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path="/register" component={Register}/>
 
             <PrivateRoute path="/home" component={<UserHome/>}/>
+            <PrivateRoute path="/new_set" component={<NewSetForm/>}/>
           </Switch>
         </Router>
       </div>
