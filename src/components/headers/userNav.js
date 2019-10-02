@@ -4,8 +4,10 @@ import {connect} from 'react-redux'
 
 class UserNav extends Component {
     render() {
+      console.log(this.props)
         return (
         <div className="Navbar">
+          <div className="Nav-list">
             <span className="Nav-item" onClick={() => this.props.dispatch({type: 'NAV_SET_FORM'})}>
             New Set
             </span>
@@ -23,6 +25,7 @@ class UserNav extends Component {
             }}>
             Logout
             </span>
+          </div>
         </div>
         )
     }
@@ -30,7 +33,7 @@ class UserNav extends Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user.currentUser
+      currentUser: state.user.currentUser
     }
 }
 

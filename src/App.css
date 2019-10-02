@@ -14,15 +14,22 @@
   font-family: 'Merriweather Sans', sans-serif;
 }
 
-
+.User-Greeting: {}
 .Navbar {
   background-color: #677990;
-  justify-items: center;
   font-size: calc(8px + 2vmin);
   padding: 10px;
   border-bottom: solid 1px;
 }
 
+.Greeting {
+  color: white;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.Nav-list {
+  justify-items: center;
+}
 .Nav-item {
   padding-left: 20px;
   padding-right: 20px;
@@ -105,12 +112,8 @@
   padding: 1%;
 }
 
-.User-div {
-  background-color:  #424348;
-}
-
 .User-home {
-  color:  #424348;
+  color:  white
 }
 
 .Error-message {

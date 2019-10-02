@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 var PrivateRoute = (props) => (
     <Route {...props.routeProps} render={() => (
         props.loggedIn ? (
-            <div>{props.children}</div>
+            <div>{props.component}</div>
         ) : (
             <Redirect to={{
                 pathname: '/login',
@@ -17,7 +17,7 @@ var PrivateRoute = (props) => (
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        loggedIn: state.user.currentUser,
+        loggedIn: localStorage.token ? true : false,
         location: ownProps.path,
         routeProps: {
             exact: ownProps.exact,

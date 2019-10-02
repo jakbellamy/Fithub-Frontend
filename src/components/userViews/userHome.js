@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 
 
 class UserHome extends Component {
-    
+
     render() {
         return (
-            <div className="User-div">
-                <h1 className ="User-home">Welcome {this.props.currentUser}</h1>
+            <div>
+                <h1 className ="User-home">Welcome Back {localStorage.username}</h1>
             </div>
         )
     }

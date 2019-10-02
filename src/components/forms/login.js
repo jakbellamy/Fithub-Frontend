@@ -9,15 +9,17 @@ import {API_AT} from '../../constants.js';
 class Login extends Component {
 
     successCheck = (res) => {
-        if(res.success){
-            localStorage.token = res.token
-            this.props.dispatch({type: 'LOG_IN', payload: res.user})
+        let {
+          token, user, msg, success
+        } = res
+        if(success){
+            this.props.dispatch({type: 'LOG_IN', payload: res})
         } else {
-            this.props.dispatch({type: 'USER_ERROR', payload: res.msg})
+            this.props.dispatch({type: 'USER_ERROR', payload: msg})
         }
     }
 
-    serveData = (body) => { 
+    serveData = (body) => {
         fetch(`${API_AT('login')}`, {
             method: 'POST',
             headers: {
@@ -40,24 +42,18 @@ class Login extends Component {
       }
 
     render() {
-        console.log(this.props.currentUser)
-        let redirectOnLogin = this.props.currentUser ? (
-            <Redirect to={{pathname: "/home"}} />) : null
-        return (
-            <>
-            { redirectOnLogin }
+        return(
             <div className="Login">
                 <h1 className="Login-title">Login</h1>
                 {this.props.errors ? <p className="Error-message">{this.props.errors}</p> : ' '}
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <p className="Login-content">Username</p>
-                    <input className="Login-input" type="text" name = "username"/>            
+                    <input className="Login-input" type="text" name = "username"/>
                     <p className="Login-content">Password</p>
                     <input className="Login-input" type="password" name = "password"/>
                     <button className='Login-button' type="submit" name="login">Login</button>
                 </form>
             </div>
-            </>
         )
     }
 }

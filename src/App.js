@@ -15,19 +15,23 @@ import PrivateRoute from './components/privateRoute';
 
 
 class App extends Component {
-  
+
+
   render() {
+    let { currentUser, errors, token } = this.props
     return (
       <div className="App">
         <Router history={history}>
           <Header />
-          {this.props.currentUser === null || this.props.currentUser === undefined ?(
+          {localStorage.token === null || localStorage.token === undefined ?(
             <LoginNav/>) : <UserNav/>}
           <Switch>
-            <Route path="/login" component={Login}/>
+            <Route path="/login">
+              {localStorage.token === null || localStorage.token === undefined ? <Login/> : <Redirect to="/home" />}
+            </Route>
             <Route path="/register" component={Register}/>
 
-            <PrivateRoute path="/home" component={UserHome}/>
+            <PrivateRoute path="/home" component={<UserHome/>}/>
           </Switch>
         </Router>
       </div>
@@ -38,7 +42,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     currentUser: state.user.currentUser,
-    errors: state.user.errors
+    errors: state.user.errors,
+    token: localStorage.token
   }
 }
 
